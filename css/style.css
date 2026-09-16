@@ -1,0 +1,1194 @@
+/* ==========================================================================
+   Nola Krijnen Portfolio Stylesheet
+   Geïnspireerd door Stylesheet.pdf & vormgeving.jpeg
+   ========================================================================== */
+
+
+:root {
+  /* Kleurenpalet volgens Stylesheet.pdf */
+  --color-pink: #ec629e;
+  --color-pink-dark: #d64786;
+  --color-pink-light: #fceaf3;
+  --color-mint: #b2dacd;
+  --color-mint-dark: #8cc4b3;
+  --color-green: #8ec580;
+  --color-green-dark: #6fa860;
+  --color-cream: #fae7d4;
+  --color-cream-light: #fffaf5;
+  --color-dark: #1b1e1c;
+  --color-white: #ffffff;
+  
+  /* Typografie */
+  --font-display: 'Titan One', cursive, sans-serif;
+  --font-body: 'Arial Narrow', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  
+  /* Randen en schaduwen conform de retro popstijl */
+  --border-thick: 2.5px solid var(--color-dark);
+  --border-frame: 4px solid var(--color-dark);
+  --shadow-retro: 4px 4px 0px var(--color-dark);
+  --shadow-retro-lg: 7px 7px 0px var(--color-dark);
+  --shadow-retro-hover: 2px 2px 0px var(--color-dark);
+  --radius-pill: 9999px;
+  --radius-card: 22px;
+  --radius-sm: 12px;
+  
+  /* Vloeiende overgangen */
+  --transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Reset & Basis */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-pink);
+  color: var(--color-dark);
+  min-height: 100vh;
+  line-height: 1.5;
+  position: relative;
+  overflow-x: hidden;
+  padding: 16px;
+}
+
+/* De kenmerkende dubbele retro omlijsting uit Stylesheet.pdf */
+.page-outer-frame {
+  max-width: 1280px;
+  margin: 0 auto;
+  background-color: var(--color-pink);
+  border: var(--border-frame);
+  border-radius: 28px;
+  padding: 22px;
+  box-shadow: var(--shadow-retro-lg);
+  min-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 8px;
+  }
+  .page-outer-frame {
+    padding: 12px;
+    border-radius: 18px;
+  }
+}
+
+/* Subtiel decoratief patroon op de achtergrond */
+.bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--color-pink-dark) 15%, transparent 16%);
+  background-size: 24px 24px;
+  opacity: 0.25;
+  pointer-events: none;
+  border-radius: 24px;
+}
+
+/* ==========================================================================
+   Header & Navigatie
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-cream);
+  border: var(--border-thick);
+  border-radius: var(--radius-pill);
+  padding: 8px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-retro);
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+}
+
+.brand-mini {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--color-dark);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+}
+
+.brand-mini-logo {
+  height: 38px;
+  width: auto;
+  filter: drop-shadow(2px 2px 0px var(--color-dark));
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.brand-mini:hover .brand-mini-logo {
+  transform: rotate(-6deg) scale(1.1);
+}
+
+.nav-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-weight: bold;
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--color-dark);
+  background-color: var(--color-cream-light);
+  border: var(--border-thick);
+  border-radius: var(--radius-pill);
+  padding: 8px 20px;
+  box-shadow: 2px 2px 0px var(--color-dark);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.nav-btn:hover, .nav-btn.active {
+  background-color: var(--color-mint);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-retro);
+}
+
+.nav-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0;
+}
+
+/* Mobile menu toggle */
+.menu-toggle {
+  display: none;
+  background-color: var(--color-mint);
+  border: var(--border-thick);
+  border-radius: var(--radius-pill);
+  padding: 8px 14px;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  box-shadow: 2px 2px 0px var(--color-dark);
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 65px;
+    right: 16px;
+    background-color: var(--color-cream);
+    border: var(--border-thick);
+    border-radius: 20px;
+    padding: 16px;
+    flex-direction: column;
+    width: 210px;
+    box-shadow: var(--shadow-retro-lg);
+    z-index: 101;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   Algemene Knoppen & UI
+   ========================================================================== */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: bold;
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  color: var(--color-dark);
+  background-color: var(--color-cream);
+  border: var(--border-thick);
+  border-radius: var(--radius-pill);
+  padding: 12px 32px;
+  box-shadow: var(--shadow-retro);
+  cursor: pointer;
+  transition: var(--transition);
+  user-select: none;
+}
+
+.btn-pill:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-retro-lg);
+  background-color: var(--color-mint);
+}
+
+.btn-pill:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--color-dark);
+}
+
+.btn-pill.btn-green {
+  background-color: var(--color-green);
+}
+.btn-pill.btn-green:hover {
+  background-color: var(--color-cream);
+}
+
+.btn-pill.btn-mint {
+  background-color: var(--color-mint);
+}
+.btn-pill.btn-mint:hover {
+  background-color: var(--color-green);
+}
+
+.btn-pill.btn-pink {
+  background-color: var(--color-pink);
+  color: var(--color-cream-light);
+}
+.btn-pill.btn-pink:hover {
+  background-color: var(--color-cream);
+  color: var(--color-dark);
+}
+
+/* Terugknop (zoals in vormgeving.jpeg: ← linksboven) */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  background-color: var(--color-cream);
+  border: var(--border-thick);
+  border-radius: 50%;
+  box-shadow: var(--shadow-retro);
+  cursor: pointer;
+  color: var(--color-dark);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn-back:hover {
+  background-color: var(--color-mint);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-retro-lg);
+}
+
+.btn-back:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--color-dark);
+}
+
+/* Sectie Kopstijl */
+.section-header-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--color-cream);
+  text-shadow: 3px 3px 0px var(--color-dark), 
+               -1px -1px 0px var(--color-dark),  
+               1px -1px 0px var(--color-dark),
+               -1px 1px 0px var(--color-dark);
+  letter-spacing: 1px;
+}
+
+/* Venster / Card Containers */
+.retro-card {
+  background-color: var(--color-cream);
+  border: var(--border-thick);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  box-shadow: var(--shadow-retro-lg);
+  position: relative;
+}
+
+/* ==========================================================================
+   Scherm 1: Home / Landing (Conform vormgeving.jpeg)
+   ========================================================================== */
+.view-section {
+  display: none;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.view-section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#view-home {
+  text-align: center;
+  padding: 20px 10px 40px;
+}
+
+.hero-container {
+  max-width: 1180px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo Presentatie op de voorpagina (volledig transparant zonder witte vlakken) */
+.logo-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 28px;
+  padding: 10px;
+}
+
+.hero-logo-img {
+  width: clamp(260px, 34vw, 380px);
+  height: auto;
+  filter: drop-shadow(6px 6px 0px rgba(27, 30, 28, 0.95));
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  display: block;
+}
+
+.hero-logo-img:hover {
+  transform: scale(1.04) rotate(-2deg);
+}
+
+/* De 3 Hoofdknoppen uit de schets van de gebruiker */
+.home-navigation-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+.home-nav-btn {
+  font-size: 1.35rem;
+  padding: 16px 42px;
+  font-family: var(--font-display);
+  letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   Horizontaal Uitgelicht Werk op Home
+   ========================================================================== */
+.home-teaser-strip {
+  margin-top: 20px;
+  background-color: var(--color-cream);
+  border: var(--border-thick);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  box-shadow: var(--shadow-retro-lg);
+  text-align: left;
+  width: 100%;
+}
+
+.home-teaser-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.home-teaser-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+}
+
+/* ==========================================================================
+   Uitgelicht Werk: Speelse Polaroids (zonder titel of uitleg)
+   ========================================================================== */
+.teaser-polaroids-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  align-items: center;
+  justify-items: center;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.teaser-polaroid {
+  background-color: var(--color-white);
+  border: var(--border-thick);
+  border-radius: 14px;
+  padding: 14px 14px 34px 14px; /* Brede onderrand voor de polaroid look */
+  box-shadow: var(--shadow-retro);
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.teaser-polaroid:nth-child(1) { transform: rotate(-2deg); }
+.teaser-polaroid:nth-child(2) { transform: rotate(2deg); }
+.teaser-polaroid:nth-child(3) { transform: rotate(-1.5deg); }
+.teaser-polaroid:nth-child(4) { transform: rotate(2.5deg); }
+
+.teaser-polaroid:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  box-shadow: var(--shadow-retro-lg);
+  z-index: 10;
+}
+
+.teaser-polaroid-photo {
+  width: 100%;
+  height: 290px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+  padding: 6px;
+}
+
+.teaser-polaroid-photo img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.teaser-polaroid:hover .teaser-polaroid-photo img {
+  transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .teaser-polaroids-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .teaser-polaroid-photo {
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .teaser-polaroids-row {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+/* ==========================================================================
+   Scherm 2: Projecten Overzicht (Polaroids met alleen titel, zonder blauw vlak)
+   ========================================================================== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 36px;
+  margin-bottom: 40px;
+}
+
+.project-polaroid-card {
+  background-color: var(--color-white);
+  border: var(--border-thick);
+  border-radius: 16px;
+  padding: 16px 16px 22px 16px;
+  box-shadow: var(--shadow-retro-lg);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+  cursor: pointer;
+  position: relative;
+}
+
+.project-polaroid-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0px var(--color-dark);
+}
+
+/* Zonder blauw vlak achter de foto's: zuiver transparant en ruim frame */
+.project-polaroid-photo {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  background-color: transparent;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.project-polaroid-photo img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.12));
+}
+
+.project-polaroid-card:hover .project-polaroid-photo img {
+  transform: scale(1.03);
+}
+
+.project-polaroid-bottom {
+  padding: 16px 12px 6px;
+  text-align: center;
+  border-top: 2px dashed rgba(27, 30, 28, 0.15);
+  margin-top: 8px;
+}
+
+.project-polaroid-title {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  color: var(--color-dark);
+  margin: 0;
+  line-height: 1.25;
+}
+
+@media (max-width: 768px) {
+  .project-polaroid-photo {
+    height: 380px;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* ==========================================================================
+   Scherm 3: Project Detail Weergave (Grote Overlappende Fotocollage)
+   ========================================================================== */
+.project-detail-container {
+  background-color: var(--color-cream);
+  border: var(--border-thick);
+  border-radius: var(--radius-card);
+  padding: 36px;
+  box-shadow: var(--shadow-retro-lg);
+  margin-bottom: 40px;
+}
+
+.project-detail-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .project-detail-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Overlappende fotocollage links */
+.detail-collage-stage {
+  position: relative;
+  min-height: 560px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.collage-item {
+  position: relative;
+  border: var(--border-thick);
+  border-radius: 14px;
+  background-color: var(--color-white);
+  padding: 12px;
+  box-shadow: var(--shadow-retro-lg);
+  cursor: pointer;
+  transition: var(--transition);
+  max-width: 94%;
+}
+
+.collage-item img {
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+  object-fit: contain;
+  border-radius: 6px;
+  display: block;
+}
+
+.collage-item:hover {
+  transform: scale(1.03) rotate(0deg) !important;
+  z-index: 20 !important;
+  box-shadow: 12px 12px 0px var(--color-dark);
+}
+
+.collage-item-1 {
+  transform: rotate(-3deg);
+  z-index: 2;
+  margin-bottom: -35px;
+  align-self: flex-start;
+}
+
+.collage-item-2 {
+  transform: rotate(4deg);
+  z-index: 3;
+  margin-top: -25px;
+  align-self: flex-end;
+}
+
+.collage-item-3 {
+  transform: rotate(-2deg);
+  z-index: 4;
+  margin-top: -20px;
+  align-self: center;
+}
+
+.collage-caption {
+  display: none !important;
+}
+
+/* Thumbnails gallerij onder de collage */
+.detail-gallery-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 26px;
+  justify-content: center;
+}
+
+.gallery-thumb {
+  width: 84px;
+  height: 84px;
+  border: var(--border-thick);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px var(--color-dark);
+  transition: var(--transition);
+  background-color: var(--color-mint);
+}
+
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-thumb:hover, .gallery-thumb.thumb-active {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-retro);
+  border-color: var(--color-pink-dark);
+}
+
+/* Rechterkant: Tekst & Informatie */
+.detail-text-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detail-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.detail-badge {
+  font-family: var(--font-body);
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding: 4px 14px;
+  border: var(--border-thick);
+  border-radius: var(--radius-pill);
+  box-shadow: 2px 2px 0px var(--color-dark);
+}
+
+.detail-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  line-height: 1.1;
+  color: var(--color-dark);
+}
+
+.detail-lead {
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1.4;
+  color: #222;
+  border-left: 4px solid var(--color-pink);
+  padding-left: 14px;
+}
+
+.detail-body-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.detail-meta-box {
+  background-color: var(--color-mint);
+  border: var(--border-thick);
+  border-radius: 14px;
+  padding: 16px 20px;
+  box-shadow: var(--shadow-retro);
+  margin-top: 10px;
+}
+
+.meta-row {
+  display: flex;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+.meta-row:last-child {
+  margin-bottom: 0;
+}
+
+.meta-label {
+  font-weight: bold;
+  width: 110px;
+}
+
+.meta-value {
+  flex: 1;
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* ==========================================================================
+   Scherm 4: Over Mij (Conform vormgeving.jpeg)
+   Links: Bio & Skills / Rechts: Vintage polaroid met foto
+   ========================================================================== */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+@media (max-width: 860px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about-text-column {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.about-intro-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  line-height: 1.2;
+}
+
+.about-paragraph {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #2b2b2b;
+}
+
+.skills-section {
+  margin-top: 10px;
+}
+
+.skills-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+
+.skills-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-pill {
+  background-color: var(--color-green);
+  border: var(--border-thick);
+  border-radius: var(--radius-pill);
+  padding: 6px 16px;
+  font-family: var(--font-body);
+  font-weight: bold;
+  font-size: 0.95rem;
+  box-shadow: 2px 2px 0px var(--color-dark);
+}
+
+.skill-pill:nth-child(even) {
+  background-color: var(--color-mint);
+}
+
+/* Polaroid Collage rechts: Over Mij Foto */
+.about-collage-stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.polaroid-frame {
+  background-color: var(--color-white);
+  border: var(--border-thick);
+  border-radius: 12px;
+  padding: 14px 14px 44px;
+  box-shadow: var(--shadow-retro-lg);
+  transform: rotate(3deg);
+  max-width: 380px;
+  width: 100%;
+  position: relative;
+  transition: var(--transition);
+}
+
+.polaroid-frame:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 10px 10px 0px var(--color-dark);
+}
+
+.polaroid-img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1.5px solid #ddd;
+  display: block;
+}
+
+.polaroid-note {
+  position: absolute;
+  bottom: 12px;
+  left: 18px;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--color-dark);
+}
+
+/* Washi tape decoratie */
+.tape-accent {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 110px;
+  height: 28px;
+  background-color: rgba(178, 218, 205, 0.85);
+  border: 1.5px dashed var(--color-dark);
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+  z-index: 5;
+}
+
+/* Stickers rondom de foto */
+.about-sticker-cmd {
+  position: absolute;
+  bottom: -15px;
+  right: -10px;
+  background-color: var(--color-mint);
+  border: var(--border-thick);
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  box-shadow: var(--shadow-retro);
+  transform: rotate(-6deg);
+  z-index: 6;
+}
+
+.about-sticker-year {
+  position: absolute;
+  top: 30px;
+  left: -20px;
+  background-color: var(--color-green);
+  border: var(--border-thick);
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  box-shadow: var(--shadow-retro);
+  transform: rotate(-12deg);
+  z-index: 6;
+}
+
+/* ==========================================================================
+   Scherm 5: Contact
+   ========================================================================== */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 36px;
+}
+
+@media (max-width: 860px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-info-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-info-card {
+  background-color: var(--color-mint);
+  border: var(--border-thick);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow-retro);
+}
+
+.contact-info-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin-bottom: 14px;
+}
+
+.contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 1.05rem;
+}
+
+.contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-link {
+  color: var(--color-dark);
+  text-decoration: underline;
+  font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+.contact-link:hover {
+  color: var(--color-pink-dark);
+}
+
+.contact-icon-pill {
+  width: 36px;
+  height: 36px;
+  background-color: var(--color-white);
+  border: 2px solid var(--color-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: 2px 2px 0px var(--color-dark);
+  flex-shrink: 0;
+}
+
+/* Contactformulier rechts */
+.contact-form-column {
+  background-color: var(--color-white);
+  border: var(--border-thick);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: var(--shadow-retro);
+}
+
+.contact-form-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 18px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  border: var(--border-thick);
+  border-radius: 12px;
+  background-color: var(--color-cream-light);
+  outline: none;
+  transition: var(--transition);
+}
+
+.form-input:focus, .form-textarea:focus {
+  background-color: var(--color-white);
+  border-color: var(--color-pink-dark);
+  box-shadow: 3px 3px 0px var(--color-dark);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-success-message {
+  display: none;
+  background-color: var(--color-green);
+  border: var(--border-thick);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-top: 16px;
+  font-weight: bold;
+  box-shadow: 3px 3px 0px var(--color-dark);
+  animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   Modals (Lightbox)
+   ========================================================================= */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(27, 30, 28, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-content {
+  background-color: var(--color-cream);
+  border: var(--border-frame);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  max-width: 850px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 10px 10px 0px var(--color-dark);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 42px;
+  height: 42px;
+  background-color: var(--color-pink);
+  color: var(--color-white);
+  border: var(--border-thick);
+  border-radius: 50%;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0px var(--color-dark);
+  transition: var(--transition);
+  z-index: 25;
+}
+
+.modal-close-btn:hover {
+  transform: scale(1.1) rotate(90deg);
+}
+
+.lightbox-modal .modal-content {
+  max-width: 95vw;
+  max-height: 95vh;
+  padding: 20px;
+  background-color: var(--color-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#lightbox-img {
+  max-width: 100%;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 2px solid var(--color-cream);
+}
+
+#lightbox-caption {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  margin-top: auto;
+  padding-top: 24px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: var(--border-thick);
+  margin-top: 40px;
+}
+

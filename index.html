@@ -1,0 +1,4336 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nola Krijnen — Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-pink: #ec629e;
+      --color-pink-dark: #d64786;
+      --color-pink-light: #fceaf3;
+
+      --color-mint: #b2dacd;
+      --color-mint-dark: #8cc4b3;
+
+      --color-green: #8ec580;
+      --color-green-dark: #6fa860;
+
+      --color-cream: #fae7d4;
+      --color-cream-light: #fffaf5;
+
+      --color-dark: #1b1e1c;
+      --color-white: #ffffff;
+
+      --font-display: 'Titan One', cursive, sans-serif;
+      --font-body: 'Arial Narrow', 'Segoe UI', Arial, sans-serif;
+
+      --border-thick: 2.5px solid var(--color-dark);
+      --border-frame: 4px solid var(--color-dark);
+
+      --shadow-retro: 4px 4px 0px var(--color-dark);
+      --shadow-retro-lg: 7px 7px 0px var(--color-dark);
+
+      --radius-pill: 9999px;
+      --radius-card: 22px;
+
+      --transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* ================================
+       RESET
+       ================================ */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-pink);
+      color: var(--color-dark);
+      min-height: 100vh;
+      line-height: 1.5;
+      overflow-x: hidden;
+      padding: 16px;
+    }
+
+    /* ================================
+       BUITENSTE FRAME
+       ================================ */
+
+    .page-outer-frame {
+      max-width: 1280px;
+      margin: 0 auto;
+      background-color: var(--color-pink);
+      border: var(--border-frame);
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: var(--shadow-retro-lg);
+      min-height: calc(100vh - 32px);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .bg-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(
+        var(--color-pink-dark) 15%,
+        transparent 16%
+      );
+      background-size: 24px 24px;
+      opacity: 0.25;
+      pointer-events: none;
+      border-radius: 24px;
+    }
+
+    /* ================================
+       HEADER
+       ================================ */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--color-cream);
+      border: var(--border-thick);
+      border-radius: var(--radius-pill);
+      padding: 8px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-retro);
+      margin-bottom: 24px;
+    }
+
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--color-dark);
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      letter-spacing: 1px;
+    }
+
+    .brand-mini-logo {
+      height: 38px;
+      width: auto;
+      filter: drop-shadow(1.5px 1.5px 0px var(--color-dark));
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .brand-mini:hover .brand-mini-logo {
+      transform: rotate(-6deg) scale(1.1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-weight: bold;
+      font-size: 1rem;
+      color: var(--color-dark);
+      background-color: var(--color-cream-light);
+      border: var(--border-thick);
+      border-radius: 26px 30px 26px 30px / 18px 22px 18px 22px;
+      padding: 8px 20px;
+      box-shadow: 2px 2px 0px var(--color-dark);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background-color: var(--color-mint);
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-retro);
+    }
+
+    .menu-toggle {
+      display: none;
+      background-color: var(--color-mint);
+      border: var(--border-thick);
+      border-radius: 22px 26px 22px 26px / 16px 20px 16px 20px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      box-shadow: 2px 2px 0px var(--color-dark);
+    }
+
+    /* ================================
+       KNOPPEN
+       ================================ */
+
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-weight: bold;
+      font-size: 1.15rem;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      color: var(--color-dark);
+      background-color: var(--color-cream);
+      border: var(--border-thick);
+      border-radius: 26px 30px 26px 30px / 18px 22px 18px 22px;
+      padding: 12px 32px;
+      box-shadow: var(--shadow-retro);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-pill:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: var(--shadow-retro-lg);
+      background-color: var(--color-mint);
+    }
+
+    .btn-green {
+      background-color: var(--color-green);
+    }
+
+    .btn-mint {
+      background-color: var(--color-mint);
+    }
+
+    .btn-pink {
+      background-color: var(--color-pink);
+      color: var(--color-cream-light);
+    }
+
+    .btn-cream {
+      background-color: var(--color-cream);
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 54px;
+      height: 54px;
+      font-size: 1.6rem;
+      font-weight: bold;
+      background-color: var(--color-cream);
+      border: var(--border-thick);
+      border-radius: 22px 26px 22px 26px / 18px 20px 18px 20px;
+      box-shadow: var(--shadow-retro);
+      cursor: pointer;
+      color: var(--color-dark);
+      transition: var(--transition);
+    }
+
+    .btn-back:hover {
+      background-color: var(--color-mint);
+      transform: translate(-2px, -2px);
+    }
+
+    /* ================================
+       PAGINA'S
+       ================================ */
+
+    .view-section {
+      display: none;
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-header-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--color-cream);
+      text-shadow:
+        3px 3px 0px var(--color-dark),
+        -1px -1px 0px var(--color-dark),
+        1px -1px 0px var(--color-dark),
+        -1px 1px 0px var(--color-dark);
+      letter-spacing: 1px;
+    }
+
+    /* ================================
+       HOME
+       ================================ */
+
+    #view-home {
+      text-align: center;
+      padding: 20px 10px 40px;
+    }
+
+    .hero-container {
+      max-width: 1180px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 28px;
+      padding: 10px;
+    }
+
+    .hero-logo-img {
+      width: clamp(300px, 40vw, 440px);
+      height: auto;
+      filter: drop-shadow(6px 6px 0px rgba(27, 30, 28, 0.95));
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .hero-logo-img:hover {
+      transform: scale(1.04) rotate(-2deg);
+    }
+
+    /* ================================
+       UITGELICHT WERK
+       ================================ */
+
+    .home-teaser-strip {
+      margin-top: 20px;
+      padding: 0;
+      text-align: left;
+      width: 100%;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+
+    .home-teaser-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 0 6px;
+    }
+
+    .home-teaser-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+    }
+
+    .featured-stickers-board {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 26px 18px;
+      align-items: start;
+      width: 100%;
+      padding: 10px 2px 4px;
+    }
+
+    .featured-sticker {
+      --sticker-rotate: 0deg;
+      --stamp-color: var(--color-pink);
+      position: relative;
+      width: 100%;
+      padding: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: var(--transition);
+      transform: rotate(var(--sticker-rotate));
+    }
+
+    .featured-sticker:nth-child(2),
+    .featured-sticker:nth-child(5) {
+      margin-top: 18px;
+    }
+
+    .featured-sticker:nth-child(4) {
+      margin-top: 8px;
+    }
+
+    .featured-sticker:hover {
+      transform: translate(-4px, -5px) rotate(0deg) scale(1.045);
+      z-index: 10;
+    }
+
+    .featured-stamp-svg {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      display: block;
+      overflow: visible;
+      filter: drop-shadow(4px 4px 0px var(--color-dark));
+    }
+
+    .featured-stamp-outer {
+      fill: var(--stamp-color);
+      stroke: var(--color-dark);
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .featured-stamp-inner {
+      fill: var(--color-cream-light);
+      stroke: var(--color-dark);
+      stroke-width: 1.3;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .featured-stamp-photo-frame {
+      fill: var(--color-white);
+      stroke: var(--color-dark);
+      stroke-width: 1.25;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .featured-stamp-title {
+      font-family: var(--font-display);
+      font-size: 6.2px;
+      letter-spacing: 0.15px;
+      fill: var(--color-dark);
+      text-anchor: middle;
+    }
+
+    .featured-stamp-mark {
+      fill: none;
+      stroke: var(--color-dark);
+      stroke-width: 1;
+      opacity: 0.48;
+      vector-effect: non-scaling-stroke;
+    }
+
+    /* ================================
+       PROJECTENOVERZICHT
+       ================================ */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 26px 18px;
+      align-items: start;
+      margin-bottom: 40px;
+      padding: 10px 2px 4px;
+    }
+
+    .project-stamp-card {
+      width: 100%;
+    }
+
+    /* ================================
+       PROJECTDETAIL
+       ================================ */
+
+    .project-detail-container {
+      background-color: var(--color-cream);
+      border: var(--border-thick);
+      border-radius: var(--radius-card);
+      padding: 36px;
+      box-shadow: var(--shadow-retro-lg);
+      margin-bottom: 40px;
+    }
+
+    .project-detail-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .detail-collage-stage {
+      min-height: 560px;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .collage-item {
+      position: relative;
+      border: none;
+      background: transparent;
+      padding: 0;
+      box-shadow: none;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 94%;
+      max-width: 94%;
+    }
+
+    .collage-item.media-landscape {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .detail-media-svg {
+      width: 100%;
+      max-height: 560px;
+      display: block;
+      overflow: visible;
+      filter: drop-shadow(5px 5px 0px var(--color-dark));
+    }
+
+    .detail-media-frame-outer {
+      fill: var(--detail-frame-color, var(--color-green));
+      stroke: var(--color-dark);
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .detail-media-frame-inner {
+      fill: none;
+      stroke: var(--color-dark);
+      stroke-width: 0.95;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .collage-item-1 {
+      transform: rotate(-3deg);
+      z-index: 2;
+      margin-bottom: -35px;
+      align-self: flex-start;
+    }
+
+    .collage-item-2 {
+      transform: rotate(4deg);
+      z-index: 3;
+      margin-top: -25px;
+      align-self: flex-end;
+    }
+
+    .collage-item-3 {
+      transform: rotate(-2deg);
+      z-index: 4;
+      margin-top: -20px;
+      align-self: center;
+    }
+
+    .collage-item:hover {
+      transform: scale(1.03) rotate(0deg) !important;
+      z-index: 20;
+    }
+
+    /* ================================
+       VIDEO
+       ================================ */
+
+    .collage-item.video-item {
+      width: 100%;
+      max-width: 100%;
+      transform: none !important;
+      align-self: center;
+      margin: 0 0 30px 0 !important;
+      z-index: 10;
+      cursor: default;
+    }
+
+    .collage-item.video-item:hover {
+      transform: none !important;
+      box-shadow: var(--shadow-retro-lg);
+    }
+
+    .project-detail-video {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 620px;
+      border-radius: 8px;
+      background: #000;
+      object-fit: contain;
+    }
+
+    /* ================================
+       THUMBNAILS
+       ================================ */
+
+    .detail-gallery-thumbs {
+      display: none !important;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 26px;
+      justify-content: center;
+    }
+
+    .gallery-thumb {
+      width: 84px;
+      height: 84px;
+      border: none;
+      overflow: visible;
+      cursor: pointer;
+      box-shadow: none;
+      transition: var(--transition);
+      background: transparent;
+      position: relative;
+    }
+
+    .gallery-thumb-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+      filter: drop-shadow(1.5px 1.5px 0px var(--color-dark));
+    }
+
+    .gallery-thumb-outer {
+      fill: var(--thumb-frame-color, var(--color-green));
+      stroke: var(--color-dark);
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .gallery-thumb-inner {
+      fill: none;
+      stroke: var(--color-dark);
+      stroke-width: 0.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .gallery-thumb:hover,
+    .gallery-thumb.thumb-active {
+      transform: scale(1.1);
+    }
+
+    .gallery-thumb.thumb-active .gallery-thumb-outer,
+    .gallery-thumb:hover .gallery-thumb-outer {
+      stroke: var(--color-pink-dark);
+    }
+
+    .gallery-thumb-video {
+      position: relative;
+    }
+
+    .gallery-video-play {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 42% 58% 46% 54% / 54% 41% 59% 46%;
+      background-color: var(--color-cream);
+      border: 2px solid var(--color-dark);
+      box-shadow: 2px 2px 0 var(--color-dark);
+      pointer-events: none;
+    }
+
+    /* ================================
+       PROJECTTEKST
+       ================================ */
+
+    .detail-text-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .detail-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .detail-badge {
+      --badge-fill: var(--color-green);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: none;
+      background: transparent !important;
+      box-shadow: none;
+      line-height: 1;
+    }
+
+    .detail-badge-svg {
+      display: block;
+      height: 42px;
+      overflow: visible;
+      filter: drop-shadow(1.5px 1.5px 0px var(--color-dark));
+    }
+
+    #detail-project-badge .detail-badge-svg {
+      width: 168px;
+    }
+
+    #detail-project-year .detail-badge-svg {
+      width: 92px;
+    }
+
+    .detail-badge-shape {
+      fill: var(--badge-fill);
+      stroke: var(--color-dark);
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .detail-badge-text {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: bold;
+      fill: var(--color-dark);
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+
+    .detail-lead {
+      font-size: 1.2rem;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+
+    .detail-body-text {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .detail-meta-box {
+      background-color: var(--color-mint);
+      border: var(--border-thick);
+      border-radius: 28px 32px 28px 32px / 18px 22px 18px 22px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow-retro);
+      margin-top: 10px;
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    .meta-label {
+      font-weight: bold;
+      min-width: 120px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      background-color: var(--color-cream-light);
+      border: 2px solid var(--color-dark);
+      border-radius: 22px 26px 22px 26px / 16px 20px 16px 20px;
+      box-shadow: 2px 2px 0 var(--color-dark);
+      text-align: center;
+    }
+
+    .meta-value {
+      flex: 1;
+    }
+
+    .detail-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    /* ================================
+       ALGEMENE CARD
+       ================================ */
+
+    .retro-card {
+      background-color: var(--color-cream);
+      border: var(--border-thick);
+      border-radius: var(--radius-card);
+      padding: 28px;
+      box-shadow: var(--shadow-retro-lg);
+      position: relative;
+    }
+
+    /* ================================
+       OVER MIJ
+       ================================ */
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .about-text-column {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .about-intro-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+    }
+
+    .about-paragraph {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .skills-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+
+    .skills-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-pill {
+      background-color: var(--color-green);
+      border: var(--border-thick);
+      border-radius: var(--radius-pill);
+      padding: 6px 16px;
+      font-weight: bold;
+      box-shadow: 2px 2px 0px var(--color-dark);
+    }
+
+    .skill-pill:nth-child(even) {
+      background-color: var(--color-mint);
+    }
+
+    .about-collage-stage {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .polaroid-frame {
+      background-color: var(--color-white);
+      border: var(--border-thick);
+      border-radius: 12px;
+      padding: 14px 14px 44px;
+      box-shadow: var(--shadow-retro-lg);
+      transform: rotate(3deg);
+      max-width: 380px;
+      width: 100%;
+      position: relative;
+    }
+
+    .polaroid-img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+    }
+
+    .polaroid-note {
+      position: absolute;
+      bottom: 12px;
+      left: 18px;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+    }
+
+    .tape-accent {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 110px;
+      height: 28px;
+      background-color: rgba(178, 218, 205, 0.85);
+      border: 1.5px dashed var(--color-dark);
+      z-index: 5;
+    }
+
+    .about-sticker-cmd {
+      position: absolute;
+      bottom: -15px;
+      right: -10px;
+      background-color: var(--color-mint);
+      border: var(--border-thick);
+      border-radius: var(--radius-pill);
+      padding: 8px 18px;
+      font-family: var(--font-display);
+      box-shadow: var(--shadow-retro);
+      transform: rotate(-6deg);
+    }
+
+    .about-sticker-year {
+      position: absolute;
+      top: 30px;
+      left: -20px;
+      background-color: var(--color-green);
+      border: var(--border-thick);
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      box-shadow: var(--shadow-retro);
+      transform: rotate(-12deg);
+    }
+
+    /* ================================
+       CONTACT
+       ================================ */
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 36px;
+    }
+
+    .contact-info-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-info-card {
+      background-color: var(--color-mint);
+      border: var(--border-thick);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow-retro);
+    }
+
+    .contact-info-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      margin-bottom: 14px;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      font-size: 1.05rem;
+    }
+
+    .contact-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .contact-icon-pill {
+      width: 36px;
+      height: 36px;
+      background-color: var(--color-white);
+      border: 2px solid var(--color-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 2px 2px 0px var(--color-dark);
+    }
+
+    .contact-link {
+      color: var(--color-dark);
+      font-weight: bold;
+    }
+
+    .contact-form-column {
+      background-color: var(--color-white);
+      border: var(--border-thick);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow-retro);
+    }
+
+    .contact-form-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      border: var(--border-thick);
+      border-radius: 12px;
+      background-color: var(--color-cream-light);
+      outline: none;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-success-message {
+      display: none;
+      background-color: var(--color-green);
+      border: var(--border-thick);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-top: 16px;
+      font-weight: bold;
+    }
+
+    /* ================================
+       LIGHTBOX
+       ================================ */
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(27, 30, 28, 0.8);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-content {
+      background-color: var(--color-dark);
+      border: var(--border-frame);
+      border-radius: var(--radius-card);
+      padding: 20px;
+      max-width: 95vw;
+      max-height: 95vh;
+      position: relative;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 42px;
+      height: 42px;
+      background-color: var(--color-pink);
+      color: var(--color-white);
+      border: var(--border-thick);
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      z-index: 20;
+    }
+
+    #lightbox-img {
+      max-width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    /* ================================
+       FOOTER
+       ================================ */
+
+    .site-footer {
+      margin-top: 40px;
+      padding-top: 24px;
+      text-align: center;
+      font-weight: bold;
+      border-top: var(--border-thick);
+    }
+
+    /* ================================
+       RESPONSIVE
+       ================================ */
+
+    @media (max-width: 960px) {
+      .project-detail-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .about-layout,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 65px;
+        right: 16px;
+        background-color: var(--color-cream);
+        border: var(--border-thick);
+        border-radius: 20px;
+        padding: 16px;
+        flex-direction: column;
+        width: 210px;
+        box-shadow: var(--shadow-retro-lg);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-btn {
+        width: 100%;
+      }
+
+      .featured-stickers-board {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px 16px;
+      }
+
+      .featured-sticker:nth-child(2),
+      .featured-sticker:nth-child(5),
+      .featured-sticker:nth-child(4) {
+        margin-top: 0;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px 16px;
+      }
+
+      .projects-grid .featured-sticker:nth-child(2),
+      .projects-grid .featured-sticker:nth-child(5),
+      .projects-grid .featured-sticker:nth-child(4) {
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 8px;
+      }
+
+      .page-outer-frame {
+        padding: 12px;
+        border-radius: 18px;
+      }
+
+      .featured-stickers-board {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px 12px;
+      }
+
+      .home-teaser-header {
+        padding: 0;
+      }
+
+      .featured-sticker:nth-child(2),
+      .featured-sticker:nth-child(5),
+      .featured-sticker:nth-child(4) {
+        margin-top: 0;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page-outer-frame">
+
+    <div class="bg-pattern"></div>
+
+    <!-- HEADER -->
+
+    <header class="site-header">
+
+      <a href="#" class="brand-mini" data-target="view-home">
+        <img
+          src="images/logo_transparent.png"
+          alt="NOLA DESIGN Logo"
+          class="brand-mini-logo"
+        >
+        <span>NOLA DESIGN</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="mobile-menu-toggle"
+        aria-label="Menu openen"
+      >
+        ☰
+      </button>
+
+      <nav>
+        <ul class="nav-links">
+
+          <li>
+            <button
+              class="nav-btn active"
+              data-target="view-home"
+            >
+              Home
+            </button>
+          </li>
+
+          <li>
+            <button
+              class="nav-btn"
+              data-target="view-projects"
+            >
+              Projecten
+            </button>
+          </li>
+
+          <li>
+            <button
+              class="nav-btn"
+              data-target="view-about"
+            >
+              Over mij
+            </button>
+          </li>
+
+          <li>
+            <button
+              class="nav-btn"
+              data-target="view-contact"
+            >
+              Contact
+            </button>
+          </li>
+
+        </ul>
+      </nav>
+
+    </header>
+
+    <!-- HOME -->
+
+    <section
+      id="view-home"
+      class="view-section active"
+    >
+
+      <div class="hero-container">
+
+        <div class="logo-wrapper">
+
+          <img
+            src="images/logo_transparent.png"
+            alt="NOLA DESIGN Logo"
+            class="hero-logo-img"
+          >
+
+        </div>
+
+        <!-- UITGELICHT WERK -->
+
+        <div class="home-teaser-strip">
+
+          <div class="home-teaser-header">
+
+            <h3>Uitgelicht Werk</h3>
+
+            <button
+              class="btn-pill btn-green"
+              data-target="view-projects"
+              style="padding: 6px 18px; font-size: 0.95rem;"
+            >
+              Bekijk Alle Projecten →
+            </button>
+
+          </div>
+
+          <div
+            class="featured-stickers-board"
+            id="featured-stickers-board"
+          ></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- PROJECTEN -->
+
+    <section
+      id="view-projects"
+      class="view-section"
+    >
+
+      <div class="section-header-bar">
+
+        <button
+          class="btn-back"
+          data-back-to="view-home"
+        >
+          ←
+        </button>
+
+        <h2 class="section-title">
+          Projecten
+        </h2>
+
+      </div>
+
+      <div
+        id="projects-grid"
+        class="projects-grid"
+      ></div>
+
+    </section>
+
+    <!-- PROJECT DETAIL -->
+
+    <section
+      id="view-project-detail"
+      class="view-section"
+    >
+
+      <div class="section-header-bar">
+
+        <button
+          class="btn-back"
+          data-back-to="view-projects"
+        >
+          ←
+        </button>
+
+        <h2
+          class="section-title"
+          id="detail-project-title"
+        >
+          Project
+        </h2>
+
+      </div>
+
+      <div class="project-detail-container">
+
+        <div class="project-detail-layout">
+
+          <div class="detail-visual-column">
+
+            <div
+              class="detail-collage-stage"
+              id="detail-collage-stage"
+            ></div>
+
+            <div
+              class="detail-gallery-thumbs"
+              id="detail-gallery-thumbs"
+            ></div>
+
+          </div>
+
+          <div class="detail-text-column">
+
+            <div class="detail-badge-row">
+
+              <span
+                class="detail-badge"
+                id="detail-project-badge"
+                style="--badge-fill: var(--color-green);"
+              >
+                Categorie
+              </span>
+
+              <span
+                class="detail-badge"
+                id="detail-project-year"
+                style="--badge-fill: var(--color-mint);"
+              >
+                Jaar
+              </span>
+
+            </div>
+
+            <p
+              class="detail-lead"
+              id="detail-project-lead"
+            ></p>
+
+            <div
+              class="detail-body-text"
+              id="detail-project-desc"
+            ></div>
+
+            <div class="detail-meta-box">
+
+              <div class="meta-row">
+
+                <span class="meta-label">
+                  Context:
+                </span>
+
+                <span
+                  class="meta-value"
+                  id="detail-project-context"
+                ></span>
+
+              </div>
+
+              <div class="meta-row">
+
+                <span class="meta-label">
+                  Technieken:
+                </span>
+
+                <span
+                  class="meta-value"
+                  id="detail-project-tools"
+                ></span>
+
+              </div>
+
+            </div>
+
+            <div class="detail-actions">
+              <button
+                class="btn-pill btn-cream"
+                data-target="view-projects"
+              >
+                ← Terug naar Projecten
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- OVER MIJ -->
+
+    <section
+      id="view-about"
+      class="view-section"
+    >
+
+      <div class="section-header-bar">
+
+        <button
+          class="btn-back"
+          data-back-to="view-home"
+        >
+          ←
+        </button>
+
+        <h2 class="section-title">
+          Over mij
+        </h2>
+
+      </div>
+
+      <div class="retro-card">
+
+        <div class="about-layout">
+
+          <div class="about-text-column">
+
+            <h3 class="about-intro-title">
+              Nola Krijnen ✦
+            </h3>
+
+            <p class="about-paragraph">
+              Ik ben Nola Krijnen,
+            </p>
+
+            <p class="about-paragraph">
+              Ik hou mij vooral bezig met grafisch en fysiek design.
+              Het mooiste vind ik als mijn ontwerp iets kan betekenen
+              of mensen aanspoort om ergens anders naar te gaan kijken,
+              dat mijn werk betekenis heeft. Daarom zet ik mijn werk
+              graag in voor aandacht aan maatschappelijke kwesties,
+              maar het is belangrijk om ook aandacht te blijven houden
+              voor de leuke dingen in het leven, dus ook onder andere
+              branding hou ik mij graag mee bezig.
+            </p>
+
+            <div class="skills-section">
+
+              <h4 class="skills-title">
+                Wat ik graag doe
+              </h4>
+
+              <div class="skills-pills">
+
+                <span class="skill-pill">
+                  activistisch design
+                </span>
+
+                <span class="skill-pill">
+                  Visual Identity & branding
+                </span>
+
+                <span class="skill-pill">
+                  Verpakkingsontwerp
+                </span>
+
+                <span class="skill-pill">
+                  Fotografie & Film
+                </span>
+
+                <span class="skill-pill">
+                  analoog & digitaal
+                </span>
+
+              </div>
+
+            </div>
+
+            <div style="margin-top: 14px;">
+
+              <button
+                class="btn-pill btn-pink"
+                data-target="view-contact"
+              >
+                Stuur me een berichtje! →
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="about-collage-stage">
+
+            <div class="polaroid-frame">
+
+              <div class="tape-accent"></div>
+
+              <img
+                src="images/over mij.jpeg"
+                alt="Nola Krijnen"
+                class="polaroid-img"
+              >
+
+              <div class="polaroid-note">
+                Nola Krijnen
+              </div>
+
+            </div>
+
+            <div class="about-sticker-cmd">
+              CMD Breda
+            </div>
+
+            <div class="about-sticker-year">
+              Jaar 2
+              <br>
+              ★ 2026
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section
+      id="view-contact"
+      class="view-section"
+    >
+
+      <div class="section-header-bar">
+
+        <button
+          class="btn-back"
+          data-back-to="view-home"
+        >
+          ←
+        </button>
+
+        <h2 class="section-title">
+          Contact
+        </h2>
+
+      </div>
+
+      <div class="retro-card">
+
+        <div class="contact-layout">
+
+          <div class="contact-info-column">
+
+            <div class="contact-info-card">
+
+              <h4>
+                Laten we samenwerken! 💌
+              </h4>
+
+              <p style="margin-bottom: 20px;">
+                Heb je een toffe opdracht, wil je overleggen over
+                een stageplek of gewoon even sparren over ontwerp?
+                Neem gerust contact met me op!
+              </p>
+
+              <ul class="contact-list">
+
+                <li>
+
+                  <span class="contact-icon-pill">
+                    ✉️
+                  </span>
+
+                  <span>
+                    <strong>E-mail:</strong>
+
+                    <a
+                      href="mailto:nolakrijnen1@gmail.com"
+                      class="contact-link"
+                    >
+                      nolakrijnen1@gmail.com
+                    </a>
+
+                  </span>
+
+                </li>
+
+              </ul>
+
+            </div>
+
+          </div>
+
+          <div class="contact-form-column">
+
+            <h3 class="contact-form-title">
+              Stuur een bericht
+            </h3>
+
+            <form id="portfolio-contact-form">
+
+              <div class="form-group">
+
+                <label
+                  for="contact-name"
+                  class="form-label"
+                >
+                  Naam *
+                </label>
+
+                <input
+                  type="text"
+                  id="contact-name"
+                  class="form-input"
+                  placeholder="Je naam of organisatie"
+                  required
+                >
+
+              </div>
+
+              <div class="form-group">
+
+                <label
+                  for="contact-email"
+                  class="form-label"
+                >
+                  E-mailadres *
+                </label>
+
+                <input
+                  type="email"
+                  id="contact-email"
+                  class="form-input"
+                  placeholder="jouw.email@domein.nl"
+                  required
+                >
+
+              </div>
+
+              <div class="form-group">
+
+                <label
+                  for="contact-subject"
+                  class="form-label"
+                >
+                  Onderwerp
+                </label>
+
+                <input
+                  type="text"
+                  id="contact-subject"
+                  class="form-input"
+                  placeholder="Bijv. Stage / Samenwerking / Vraag"
+                >
+
+              </div>
+
+              <div class="form-group">
+
+                <label
+                  for="contact-message"
+                  class="form-label"
+                >
+                  Bericht *
+                </label>
+
+                <textarea
+                  id="contact-message"
+                  class="form-textarea"
+                  placeholder="Typ hier je bericht..."
+                  required
+                ></textarea>
+
+              </div>
+
+              <button
+                type="submit"
+                class="btn-pill btn-mint"
+                style="width: 100%; font-size: 1.2rem;"
+              >
+                Verstuur Bericht 🚀
+              </button>
+
+              <div
+                id="form-success-msg"
+                class="form-success-message"
+              >
+                🎉 Bedankt voor je bericht!
+                Ik neem zo snel mogelijk contact met je op.
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- LIGHTBOX -->
+
+    <div
+      id="lightbox-modal"
+      class="modal-overlay"
+    >
+
+      <div class="modal-content">
+
+        <button
+          class="modal-close-btn"
+          onclick="closeLightbox()"
+        >
+          ✕
+        </button>
+
+        <img
+          id="lightbox-img"
+          src=""
+          alt="Vergrote afbeelding"
+        >
+
+      </div>
+
+    </div>
+
+    <footer class="site-footer">
+
+      <div>
+        <span>© 2026 Nola Krijnen</span>
+        <span>•</span>
+        <span>CMD Avans Breda</span>
+      </div>
+
+    </footer>
+
+  </div>
+
+  <script>
+    /**
+ * Nola Krijnen - Portfolio Website
+ * Dynamische navigatie met browser terug/vooruit via History API.
+ */
+
+const PROJECTS_DATA = [
+
+  /* ============================
+     PROJECT 1
+     ============================ */
+
+  {
+    id: 'clear-conscience',
+
+    title: 'Clear Conscience?',
+
+    subtitle:
+      'Analoge & Digitale Collage Vleesindustrie',
+
+    category:
+      'activistisch design',
+
+    mainImage:
+      'images/project 1/hoofdfoto.png',
+
+    lead:
+      'Aandacht voor de keerzijde van de vleesindustrie door middel van rauwe, confronterende beelden en de vraag “Clear conscience?”.',
+
+    description:
+`Voor dit project ontwierp ik een poster waarmee ik aandacht vraag voor de keerzijde van de vleesindustrie. Met confronterende beelden en de vraag “Clear conscience?” wil ik mensen laten stilstaan bij iets waar vaak nauwelijks over wordt nagedacht: wat er voorafgaat aan het stukje vlees op je bord.
+
+Tijdens het ontwerpproces heb ik verschillende concepten en technieken getest. Uiteindelijk koos ik ervoor om de achtergrond met de hand te maken, waardoor een rauw, gescheurd en onrustig effect ontstond dat goed aansluit bij het onderwerp. Het logo en de typografie heb ik digitaal ontworpen en vervolgens gecombineerd met het handgemaakte beeld.
+
+Dit project past goed bij hoe ik graag ontwerp. Ik vind het interessant om mijn werk niet alleen visueel aantrekkelijk te maken, maar er ook iets mee te zeggen. Door maatschappelijke onderwerpen in mijn ontwerpen te verwerken, kan ik mijn werk inzetten om een statement te maken en mensen aan het denken te zetten.`,
+
+    context:
+      'CMD Avans Breda • Beeldmanipulatie & Collage',
+
+    year:
+      '2025',
+
+    tools:
+      'Analoge collagetechniek, Handgescheurd papier, Digitaal logo, Adobe Illustrator, Adobe Photoshop',
+
+    images: [
+      {
+        type: 'img',
+        path: 'images/project 1/hoofdfoto.png',
+        caption: 'Clear Conscience?'
+      },
+
+      {
+        type: 'img',
+        path: 'images/project 1/digitaal_logo.png',
+        caption: 'Digitaal logo'
+      },
+
+      {
+        type: 'img',
+        path: 'images/project 1/IMG_3136.jpg',
+        caption: 'Detail'
+      },
+
+      {
+        type: 'img',
+        path: 'images/project 1/IMG_3137.jpg',
+        caption: 'Detail'
+      }
+    ],
+},
+
+  /* ============================
+     PROJECT 2
+     ============================ */
+
+  {
+    id: 'barbie-box',
+
+    title:
+      'In a Barbie world',
+
+    subtitle:
+      'Do you fit in this world?',
+
+    category:
+      'activistisch design',
+
+    mainImage:
+      'images/project 2/hoofdfoto.png',
+
+    lead:
+      'Een statement tegen het onrealistische schoonheidsideaal dat we al van jongs af aan meekrijgen door onder andere Barbie.',
+
+    description:
+`Met "In a Barbie world" maak ik een statement tegen het onrealistische schoonheidsideaal dat we al van jongs af aan meekrijgen door onder andere Barbie. Door een levensgrote Barbiebox te maken met daarin de uitgesneden vorm van een Barbie-lichaam, laat ik zien hoe mensen letterlijk en figuurlijk in een hokje worden geduwd. Verschillende mensen namen plaats in de box, maar pasten niet door de "perfecte" lichaamsvorm heen. Dat beeld maakt zichtbaar hoe absurd het is dat ons wordt aangeleerd dat we moeten voldoen aan een opgelegd ideaal.`,
+
+    context:
+      'CMD Avans Breda • Vormgeving, Concept & Fotografie',
+
+    year:
+      '2026',
+
+    tools:
+      'Fysiek, Fotografie, Adobe Photoshop',
+
+    images: [
+      {
+        type: 'img',
+        path: 'images/project 2/hoofdfoto.png',
+        caption: 'In a Barbie world'
+      },
+
+      {
+        type: 'img',
+        path: 'images/project 2/nola.png',
+        caption: 'Campagnebeeld'
+      },
+
+      {
+        type: 'img',
+        path: 'images/project 2/IMG_0004.jpg',
+        caption: 'De interactieve doos'
+      }
+    ],
+},
+
+  /* ============================
+     PROJECT 3
+     ============================ */
+
+  {
+    id: 'resurface',
+
+    title:
+      'Resurface',
+
+    subtitle:
+      'Rationeel Herstelwater',
+
+    category:
+      'Branding & Packaging',
+
+    mainImage:
+      'images/project 3/hoofdfoto.png',
+
+    lead:
+      'Herstelwater dat staat voor helderheid, kracht en controle op momenten waarop alles om je heen overweldigend voelt.',
+
+    description:
+`Voor dit project kreeg ik de opdracht om een blikje voor "Rationeel Herstelwater" te ontwerpen. Vanuit het thema rationaliteit ontwikkelde ik het concept Resurface: herstelwater dat staat voor helderheid, kracht en controle op momenten waarop alles om je heen overweldigend voelt.
+
+In het ontwerp staat een golf centraal die de vorm aanneemt van een gespierde arm. De golf symboliseert kracht, richting en houvast. Daartegenover staat een verdrinkende arm die naar de golf probeert te grijpen. Dit beeld verbeeldt het gevoel van overspoeld worden door prikkels, verwachtingen en emoties, en de behoefte om daar weer bovenuit te komen.
+
+De tegenstelling tussen deze twee armen vormt de kern van het ontwerp: je kunt je laten meeslepen door de stroom, of bewust proberen de controle terug te pakken. De golf beweegt krachtig vooruit en laat zich niet leiden door emoties. Daarmee staat hij symbool voor het rationele karakter van het product.
+
+Met Resurface wilde ik een visuele identiteit creëren die niet alleen kracht uitstraalt, maar ook een verhaal vertelt. De boodschap is om houvast te vinden wanneer alles te veel wordt, weer boven water te komen en vanuit helderheid verder te gaan.`,
+
+    context:
+      'CMD Avans Breda • Media Design',
+
+    year:
+      '2026',
+
+    tools:
+      'Adobe Illustrator, Typografie raster, Vector Art, Blikwikkel Mockup',
+
+    images: [
+      {
+        type: 'img',
+        path: 'images/project 3/hoofdfoto.png',
+        caption: 'Resurface'
+      },
+
+      {
+        type: 'img',
+        path: 'images/project 3/voorbeeld_blikje.png',
+        caption: '3D Visualisatie'
+      },
+
+      {
+        type: 'img',
+        path: 'images/project 3/ontwerp_blikje.png',
+        caption: 'Blikwikkel'
+      }
+    ],
+},
+
+  /* ============================
+     PROJECT 4
+     LADYBIRD
+     ============================ */
+
+  {
+    id:
+      'ladybird',
+
+    title:
+      'Optiteling LadyBird',
+
+    subtitle:
+      'Stopmotion Title Sequence',
+
+    category:
+      'Motion & Video',
+
+    mainImage:
+      'images/project 4/Hoofdfoto.png',
+
+    lead:
+      'DIY stopmotion optiteling voor de film Lady Bird, geïnspireerd op handgemaakte papiercollages.',
+
+    description:
+`Voor dit project heb ik een eigen optiteling ontworpen voor de film Lady Bird. Ik wilde een visuele stijl creëren die herkenbaar bij de film past en daarom heb ik een element uit het verhaal als uitgangspunt genomen.
+
+In de film maakt Lady Bird zelf een eenvoudige, handgemaakte poster wanneer ze zich voor de grap opgeeft als klassepresident. Die DIY-uitstraling heb ik gebruikt als inspiratie voor de vormgeving van de optiteling. Met papier, geknipte vormen en losse composities wilde ik verschillende thema’s en de sfeer van de film op een speelse manier terug laten komen.
+
+Voor de uitvoering koos ik voor stopmotion. Deze techniek paste het beste bij het gevoel dat ik wilde neerzetten: alsof Lady Bird zelf op haar kamer bezig is met knippen, schuiven en plakken. Door de imperfecte en handgemaakte uitstraling voelt de optiteling persoonlijk en sluit hij aan bij het karakter en de wereld van de film.`,
+
+    context:
+      'CMD Avans Breda • Media Design',
+
+    year:
+      '2026',
+
+    tools:
+      'Stopmotion animatie, Papiercollage, Setdesign, Premiere Pro',
+
+    images: [
+
+      {
+        type:
+          'video',
+
+        path:
+          'images/project 4/video.mp4',
+
+        poster:
+          'images/project 4/Hoofdfoto.png',
+
+        caption:
+          'Optiteling LadyBird'
+      },
+
+      {
+        type:
+          'img',
+
+        path:
+          'images/project 4/Hoofdfoto.png',
+
+        caption:
+          'Optiteling LadyBird - Hoofdbeeld'
+      },
+
+      {
+        type:
+          'img',
+
+        path:
+          'images/project 4/Schermafbeelding 2026-06-09 113051.png',
+
+        caption:
+          'Still 1'
+      },
+
+      {
+        type:
+          'img',
+
+        path:
+          'images/project 4/Schermafbeelding 2026-06-09 113138.png',
+
+        caption:
+          'Still 2'
+      },
+
+      {
+        type:
+          'img',
+
+        path:
+          'images/project 4/Schermafbeelding 2026-06-09 113249.png',
+
+        caption:
+          'Still 3'
+      }
+    ]
+  },
+
+  /* ============================
+     PROJECT 5
+     DE SPRONG NAAR HET LICHT
+     ============================ */
+
+  {
+    id:
+      'sprong-naar-het-licht',
+
+    title:
+      'De sprong naar het licht',
+
+    subtitle:
+      'Stopmotion',
+
+    category:
+      'Motion & Video',
+
+    mainImage:
+      'images/project 5/hoofdfoto.png',
+
+    lead:
+      'Een symbolische stopmotion over het vinden van de kracht om uit een donkere mentale situatie te ontsnappen en richting het licht te bewegen.',
+
+    description:
+`"De sprong naar het licht" is een stopmotion over een meisje dat vastzit in een donkere wereld en langzaam de kracht vindt om hieruit te ontsnappen. Ze wordt voortdurend omringd door stemmen die haar klein houden en proberen tegen te houden.
+
+Op een bepaald moment besluit ze niet langer naar deze stemmen te luisteren. Ze rent ervan weg en waagt uiteindelijk een sprong, zonder te weten waar die haar naartoe zal brengen. Juist door dat risico te nemen, weet ze uit de duisternis te ontsnappen.
+
+Met deze stopmotion wilde ik op een symbolische manier laten zien hoe moeilijk het kan zijn om uit een negatieve mentale situatie te komen. De sprong staat voor het moment waarop je kiest voor verandering, ondanks onzekerheid en angst, en toch probeert richting het licht te bewegen.`,
+
+    context:
+      'ArtCode vooropleiding Fontys Tilburg',
+
+    year:
+      '2025',
+
+    tools:
+      'Stopmotion, Storytelling, Setdesign, Fotografie & Videomontage',
+
+    images: [
+
+      {
+        type:
+          'video',
+
+        path:
+          'images/project 5/video.mp4',
+
+        poster:
+          'images/project 5/hoofdfoto.png',
+
+        caption:
+          'De sprong naar het licht'
+      },
+
+      {
+        type:
+          'img',
+
+        path:
+          'images/project 5/hoofdfoto.png',
+
+        caption:
+          'Hoofdbeeld'
+      },
+
+      {
+        type:
+          'img',
+
+        path:
+          'images/project 5/foto2.png',
+
+        caption:
+          'Still 2'
+      },
+
+      {
+        type:
+          'img',
+
+        path:
+          'images/project 5/foto3.png',
+
+        caption:
+          'Still 3'
+      }
+    ]
+  }
+];
+
+
+/* ==========================================================
+   URL VAN PAGINA BEPALEN
+   ========================================================== */
+
+function getHashForView(viewId) {
+
+  const routes = {
+    'view-home': '#home',
+    'view-projects': '#projects',
+    'view-about': '#about',
+    'view-contact': '#contact'
+  };
+
+  return routes[viewId] || '#home';
+}
+
+
+/* ==========================================================
+   PAGINA WISSELEN
+   ========================================================== */
+
+function switchView(viewId, addToHistory = true) {
+
+  const target =
+    document.getElementById(viewId);
+
+  /*
+   * Als een pagina niet bestaat,
+   * ga terug naar home.
+   */
+
+  if (!target) {
+
+    if (viewId !== 'view-home') {
+      switchView('view-home', addToHistory);
+    }
+
+    return;
+  }
+
+
+  /*
+   * Alle views verbergen
+   */
+
+  document
+    .querySelectorAll('.view-section')
+    .forEach(view => {
+      view.classList.remove('active');
+    });
+
+
+  /*
+   * Gekozen pagina tonen
+   */
+
+  target.classList.add('active');
+
+
+  /*
+   * Naar boven scrollen.
+   *
+   * Bij normale navigatie smooth.
+   * Bij browser terug/vooruit direct.
+   */
+
+  window.scrollTo({
+    top: 0,
+    behavior: addToHistory ? 'smooth' : 'auto'
+  });
+
+
+  /*
+   * Juiste navigatieknop actief maken
+   */
+
+  document
+    .querySelectorAll('.nav-btn')
+    .forEach(btn => {
+
+      btn.classList.toggle(
+        'active',
+        btn.getAttribute('data-target') === viewId
+      );
+
+    });
+
+
+  /*
+   * Mobiele navigatie sluiten
+   */
+
+  const navLinks =
+    document.querySelector('.nav-links');
+
+  if (navLinks) {
+    navLinks.classList.remove('open');
+  }
+
+
+  /*
+   * Nieuwe browsergeschiedenis toevoegen.
+   *
+   * Projectdetails worden apart afgehandeld
+   * omdat daar ook het project-ID opgeslagen moet worden.
+   */
+
+  if (
+    addToHistory &&
+    viewId !== 'view-project-detail'
+  ) {
+
+    history.pushState(
+      {
+        viewId: viewId
+      },
+      '',
+      getHashForView(viewId)
+    );
+
+  }
+}
+
+
+/* ==========================================================
+   ROUTE UIT URL LADEN
+   ========================================================== */
+
+function loadRouteFromUrl() {
+
+  const hash =
+    window.location.hash || '#home';
+
+
+  /*
+   * PROJECTDETAIL
+   *
+   * Bijvoorbeeld:
+   * #project/resurface
+   */
+
+  if (hash.startsWith('#project/')) {
+
+    const projectId =
+      decodeURIComponent(
+        hash.replace('#project/', '')
+      );
+
+
+    const projectExists =
+      PROJECTS_DATA.some(
+        project => project.id === projectId
+      );
+
+
+    if (projectExists) {
+
+      openProjectDetail(
+        projectId,
+        false
+      );
+
+      return;
+    }
+
+
+    /*
+     * Project bestaat niet.
+     * Stuur bezoeker naar projecten.
+     */
+
+    history.replaceState(
+      {
+        viewId: 'view-projects'
+      },
+      '',
+      '#projects'
+    );
+
+    switchView(
+      'view-projects',
+      false
+    );
+
+    return;
+  }
+
+
+  /*
+   * NORMALE PAGINA'S
+   */
+
+  const routes = {
+    '#home': 'view-home',
+    '#projects': 'view-projects',
+    '#about': 'view-about',
+    '#contact': 'view-contact'
+  };
+
+
+  const viewId =
+    routes[hash] || 'view-home';
+
+
+  /*
+   * Onbekende URL?
+   * Dan terug naar home.
+   */
+
+  if (!routes[hash]) {
+
+    history.replaceState(
+      {
+        viewId: 'view-home'
+      },
+      '',
+      '#home'
+    );
+
+  }
+
+
+  switchView(
+    viewId,
+    false
+  );
+}
+
+
+/* ==========================================================
+   BROWSER TERUG / VOORUIT
+   ========================================================== */
+
+function setupBrowserHistory() {
+
+  window.addEventListener(
+    'popstate',
+    () => {
+
+      loadRouteFromUrl();
+
+    }
+  );
+}
+
+
+/* ==========================================================
+   NORMALE NAVIGATIE
+   ========================================================== */
+
+function setupNavigation() {
+
+  document
+    .querySelectorAll('[data-target]')
+    .forEach(element => {
+
+      element.addEventListener(
+        'click',
+        event => {
+
+          event.preventDefault();
+
+          const target =
+            element.getAttribute(
+              'data-target'
+            );
+
+          if (target) {
+
+            switchView(target);
+
+          }
+
+        }
+      );
+
+    });
+
+
+  /*
+   * Mobiel menu
+   */
+
+  const menuToggle =
+    document.getElementById(
+      'mobile-menu-toggle'
+    );
+
+  const navLinks =
+    document.querySelector(
+      '.nav-links'
+    );
+
+
+  if (
+    menuToggle &&
+    navLinks
+  ) {
+
+    menuToggle.addEventListener(
+      'click',
+      () => {
+
+        navLinks.classList.toggle(
+          'open'
+        );
+
+      }
+    );
+
+  }
+}
+
+
+/* ==========================================================
+   EIGEN TERUGKNOPPEN
+   ========================================================== */
+
+function setupBackButtons() {
+
+  document
+    .querySelectorAll('.btn-back')
+    .forEach(button => {
+
+      button.addEventListener(
+        'click',
+        event => {
+
+          event.preventDefault();
+
+          const target =
+            button.getAttribute(
+              'data-back-to'
+            );
+
+
+          switchView(
+            target || 'view-home'
+          );
+
+        }
+      );
+
+    });
+}
+
+
+/* ==========================================================
+   UITGELICHTE STICKERS OP HOME
+   ========================================================== */
+
+function catmullRomClosedPath(points) {
+
+  const count = points.length;
+
+  if (count < 4) return '';
+
+
+  let path =
+    `M ${points[0].x.toFixed(2)} ${points[0].y.toFixed(2)}`;
+
+
+  for (let i = 0; i < count; i++) {
+
+    const p0 =
+      points[(i - 1 + count) % count];
+
+    const p1 =
+      points[i];
+
+    const p2 =
+      points[(i + 1) % count];
+
+    const p3 =
+      points[(i + 2) % count];
+
+
+    const cp1x =
+      p1.x + (p2.x - p0.x) / 6;
+
+    const cp1y =
+      p1.y + (p2.y - p0.y) / 6;
+
+    const cp2x =
+      p2.x - (p3.x - p1.x) / 6;
+
+    const cp2y =
+      p2.y - (p3.y - p1.y) / 6;
+
+
+    path +=
+      ` C ${cp1x.toFixed(2)} ${cp1y.toFixed(2)},` +
+      ` ${cp2x.toFixed(2)} ${cp2y.toFixed(2)},` +
+      ` ${p2.x.toFixed(2)} ${p2.y.toFixed(2)}`;
+
+  }
+
+
+  return path + ' Z';
+}
+
+
+function createPostageStampPath(
+  width = 100,
+  height = 125,
+  inset = 3.5,
+  wave = 2.9,
+  wavesX = 4,
+  wavesY = 6
+) {
+
+  const points = [];
+
+  const left = inset;
+  const right = width - inset;
+  const top = inset;
+  const bottom = height - inset;
+
+  const corner = 9;
+  const samplesX = wavesX * 24;
+  const samplesY = wavesY * 24;
+
+
+  /* Bovenkant */
+  for (let i = 0; i <= samplesX; i++) {
+
+    const t = i / samplesX;
+    const x = left + corner + (right - left - 2 * corner) * t;
+    const y = top + wave * Math.sin(t * Math.PI * 2 * wavesX);
+
+    points.push({ x, y });
+
+  }
+
+
+  /* Rechterbovenhoek */
+  for (let i = 1; i <= 16; i++) {
+
+    const a = -Math.PI / 2 + (Math.PI / 2) * (i / 16);
+
+    points.push({
+      x: right - corner + corner * Math.cos(a),
+      y: top + corner + corner * Math.sin(a)
+    });
+
+  }
+
+
+  /* Rechterkant */
+  for (let i = 1; i <= samplesY; i++) {
+
+    const t = i / samplesY;
+    const y = top + corner + (bottom - top - 2 * corner) * t;
+    const x = right + wave * Math.sin(t * Math.PI * 2 * wavesY);
+
+    points.push({ x, y });
+
+  }
+
+
+  /* Rechteronderhoek */
+  for (let i = 1; i <= 16; i++) {
+
+    const a = (Math.PI / 2) * (i / 16);
+
+    points.push({
+      x: right - corner + corner * Math.cos(a),
+      y: bottom - corner + corner * Math.sin(a)
+    });
+
+  }
+
+
+  /* Onderkant */
+  for (let i = 1; i <= samplesX; i++) {
+
+    const t = i / samplesX;
+    const x = right - corner - (right - left - 2 * corner) * t;
+    const y = bottom + wave * Math.sin(t * Math.PI * 2 * wavesX);
+
+    points.push({ x, y });
+
+  }
+
+
+  /* Linkeronderhoek */
+  for (let i = 1; i <= 16; i++) {
+
+    const a = Math.PI / 2 + (Math.PI / 2) * (i / 16);
+
+    points.push({
+      x: left + corner + corner * Math.cos(a),
+      y: bottom - corner + corner * Math.sin(a)
+    });
+
+  }
+
+
+  /* Linkerkant */
+  for (let i = 1; i <= samplesY; i++) {
+
+    const t = i / samplesY;
+    const y = bottom - corner - (bottom - top - 2 * corner) * t;
+    const x = left + wave * Math.sin(t * Math.PI * 2 * wavesY);
+
+    points.push({ x, y });
+
+  }
+
+
+  /* Linkerbovenhoek */
+  for (let i = 1; i <= 16; i++) {
+
+    const a = Math.PI + (Math.PI / 2) * (i / 16);
+
+    points.push({
+      x: left + corner + corner * Math.cos(a),
+      y: top + corner + corner * Math.sin(a)
+    });
+
+  }
+
+
+  return catmullRomClosedPath(points);
+}
+
+
+
+function createPostageStampPathAt(
+  x = 0,
+  y = 0,
+  width = 100,
+  height = 125,
+  inset = 0,
+  wave = 2.8,
+  wavesX = 4,
+  wavesY = 6
+) {
+
+  const points = [];
+
+  const left = x + inset;
+  const right = x + width - inset;
+  const top = y + inset;
+  const bottom = y + height - inset;
+
+  const corner = Math.max(
+    6,
+    Math.min(width, height) * 0.085
+  );
+
+  const samplesX = Math.max(36, wavesX * 24);
+  const samplesY = Math.max(36, wavesY * 24);
+
+
+  for (let i = 0; i <= samplesX; i++) {
+
+    const t = i / samplesX;
+    const px =
+      left +
+      corner +
+      (right - left - 2 * corner) * t;
+
+    const py =
+      top + wave * Math.sin(t * Math.PI * 2 * wavesX);
+
+    points.push({ x: px, y: py });
+
+  }
+
+
+  for (let i = 1; i <= 16; i++) {
+
+    const a =
+      -Math.PI / 2 +
+      (Math.PI / 2) * (i / 16);
+
+    points.push({
+      x: right - corner + corner * Math.cos(a),
+      y: top + corner + corner * Math.sin(a)
+    });
+
+  }
+
+
+  for (let i = 1; i <= samplesY; i++) {
+
+    const t = i / samplesY;
+    const py =
+      top +
+      corner +
+      (bottom - top - 2 * corner) * t;
+
+    const px =
+      right + wave * Math.sin(t * Math.PI * 2 * wavesY);
+
+    points.push({ x: px, y: py });
+
+  }
+
+
+  for (let i = 1; i <= 16; i++) {
+
+    const a =
+      (Math.PI / 2) * (i / 16);
+
+    points.push({
+      x: right - corner + corner * Math.cos(a),
+      y: bottom - corner + corner * Math.sin(a)
+    });
+
+  }
+
+
+  for (let i = 1; i <= samplesX; i++) {
+
+    const t = i / samplesX;
+    const px =
+      right -
+      corner -
+      (right - left - 2 * corner) * t;
+
+    const py =
+      bottom + wave * Math.sin(t * Math.PI * 2 * wavesX);
+
+    points.push({ x: px, y: py });
+
+  }
+
+
+  for (let i = 1; i <= 16; i++) {
+
+    const a =
+      Math.PI / 2 +
+      (Math.PI / 2) * (i / 16);
+
+    points.push({
+      x: left + corner + corner * Math.cos(a),
+      y: bottom - corner + corner * Math.sin(a)
+    });
+
+  }
+
+
+  for (let i = 1; i <= samplesY; i++) {
+
+    const t = i / samplesY;
+    const py =
+      bottom -
+      corner -
+      (bottom - top - 2 * corner) * t;
+
+    const px =
+      left + wave * Math.sin(t * Math.PI * 2 * wavesY);
+
+    points.push({ x: px, y: py });
+
+  }
+
+
+  for (let i = 1; i <= 16; i++) {
+
+    const a =
+      Math.PI +
+      (Math.PI / 2) * (i / 16);
+
+    points.push({
+      x: left + corner + corner * Math.cos(a),
+      y: top + corner + corner * Math.sin(a)
+    });
+
+  }
+
+
+  return catmullRomClosedPath(points);
+}
+
+
+function splitStampTitle(title) {
+
+  const words = title.split(' ');
+
+  const lines = [''];
+
+
+  words.forEach(word => {
+
+    const current =
+      lines[lines.length - 1];
+
+    const candidate =
+      current
+        ? `${current} ${word}`
+        : word;
+
+
+    if (
+      candidate.length > 18 &&
+      lines.length < 2
+    ) {
+
+      lines.push(word);
+
+    } else {
+
+      lines[lines.length - 1] =
+        candidate;
+
+    }
+
+  });
+
+
+  return lines.slice(0, 2);
+}
+
+
+function renderFeaturedStickers() {
+
+  const board =
+    document.getElementById(
+      'featured-stickers-board'
+    );
+
+
+  if (!board) return;
+
+
+  const rotations = [
+    '-2.5deg',
+    '1.8deg',
+    '-1.2deg',
+    '2.2deg',
+    '-1.8deg'
+  ];
+
+
+  const stampColors = [
+    'var(--color-green)',
+    'var(--color-cream)',
+    'var(--color-mint)',
+    'var(--color-cream)',
+    'var(--color-green)'
+  ];
+
+
+  const stampShapes = [
+    { wave: 2.8, wavesX: 4, wavesY: 6 },
+    { wave: 3.0, wavesX: 5, wavesY: 6 },
+    { wave: 2.7, wavesX: 4, wavesY: 5 },
+    { wave: 3.1, wavesX: 5, wavesY: 7 },
+    { wave: 2.9, wavesX: 4, wavesY: 6 }
+  ];
+
+
+  const featuredItems =
+    PROJECTS_DATA.map(project => ({
+      projectId: project.id,
+      projectTitle: project.title,
+      imagePath: project.mainImage,
+      imageAlt: project.title,
+      year: project.year
+    }));
+
+
+  board.innerHTML =
+    featuredItems
+      .map((item, index) => {
+
+        const shape =
+          stampShapes[
+            index % stampShapes.length
+          ];
+
+        const stampPath =
+          createPostageStampPath(
+            100,
+            125,
+            3.5,
+            shape.wave,
+            shape.wavesX,
+            shape.wavesY
+          );
+
+        const clipId =
+          `featured-stamp-photo-home-${index}`;
+
+        const titleLines =
+          splitStampTitle(
+            item.projectTitle
+          );
+
+        const titleStartY =
+          titleLines.length > 1
+            ? 105.5
+            : 109;
+
+        const titleMarkup =
+          titleLines
+            .map(
+              (line, lineIndex) => `
+                <tspan
+                  x="50"
+                  y="${titleStartY + lineIndex * 6.4}"
+                >${line}</tspan>
+              `
+            )
+            .join('');
+
+
+        return `
+          <button
+            type="button"
+            class="featured-sticker"
+            data-project="${item.projectId}"
+            aria-label="Open project ${item.projectTitle}"
+            style="--sticker-rotate: ${rotations[index % rotations.length]}; --stamp-color: ${stampColors[index % stampColors.length]};"
+          >
+            <svg
+              class="featured-stamp-svg"
+              viewBox="0 0 100 125"
+              role="img"
+              aria-label="${item.imageAlt}"
+            >
+              <defs>
+                <clipPath id="${clipId}">
+                  <rect
+                    x="13"
+                    y="13"
+                    width="74"
+                    height="77"
+                    rx="2"
+                  ></rect>
+                </clipPath>
+              </defs>
+
+              <path
+                d="${stampPath}"
+                class="featured-stamp-outer"
+              ></path>
+
+              <rect
+                x="10"
+                y="10"
+                width="80"
+                height="106"
+                rx="2"
+                class="featured-stamp-inner"
+              ></rect>
+
+              <rect
+                x="11.5"
+                y="11.5"
+                width="77"
+                height="80"
+                rx="2"
+                class="featured-stamp-photo-frame"
+              ></rect>
+
+              <image
+                href="${item.imagePath}"
+                x="13"
+                y="13"
+                width="74"
+                height="77"
+                preserveAspectRatio="xMidYMid slice"
+                clip-path="url(#${clipId})"
+              ></image>
+
+              <path
+                d="M 14 96 H 86"
+                class="featured-stamp-mark"
+              ></path>
+
+              <text
+                x="50"
+                y="109"
+                class="featured-stamp-title"
+              >
+                ${titleMarkup}
+              </text>
+            </svg>
+          </button>
+        `;
+
+      })
+      .join('');
+
+
+  board
+    .querySelectorAll(
+      '.featured-sticker'
+    )
+    .forEach(item => {
+
+      item.addEventListener(
+        'click',
+        () => {
+
+          const projectId =
+            item.getAttribute(
+              'data-project'
+            );
+
+
+          if (projectId) {
+
+            openProjectDetail(
+              projectId
+            );
+
+          }
+
+        }
+      );
+
+    });
+}
+
+
+
+/* ==========================================================
+   PROJECTENOVERZICHT MAKEN
+   ========================================================== */
+
+function renderProjectsGrid() {
+
+  const grid =
+    document.getElementById(
+      'projects-grid'
+    );
+
+
+  if (!grid) return;
+
+
+  const rotations = [
+    '-2.5deg',
+    '1.8deg',
+    '-1.2deg',
+    '2.2deg',
+    '-1.8deg'
+  ];
+
+
+  const stampColors = [
+    'var(--color-green)',
+    'var(--color-cream)',
+    'var(--color-mint)',
+    'var(--color-cream)',
+    'var(--color-green)'
+  ];
+
+
+  const stampShapes = [
+    { wave: 2.8, wavesX: 4, wavesY: 6 },
+    { wave: 3.0, wavesX: 5, wavesY: 6 },
+    { wave: 2.7, wavesX: 4, wavesY: 5 },
+    { wave: 3.1, wavesX: 5, wavesY: 7 },
+    { wave: 2.9, wavesX: 4, wavesY: 6 }
+  ];
+
+
+  grid.innerHTML =
+    PROJECTS_DATA
+      .map((project, index) => {
+
+        const shape =
+          stampShapes[
+            index % stampShapes.length
+          ];
+
+        const stampPath =
+          createPostageStampPath(
+            100,
+            125,
+            3.5,
+            shape.wave,
+            shape.wavesX,
+            shape.wavesY
+          );
+
+        const clipId =
+          `project-stamp-photo-grid-${index}`;
+
+        const titleLines =
+          splitStampTitle(
+            project.title
+          );
+
+        const titleStartY =
+          titleLines.length > 1
+            ? 105.5
+            : 109;
+
+        const titleMarkup =
+          titleLines
+            .map(
+              (line, lineIndex) => `
+                <tspan
+                  x="50"
+                  y="${titleStartY + lineIndex * 6.4}"
+                >${line}</tspan>
+              `
+            )
+            .join('');
+
+
+        return `
+          <button
+            type="button"
+            class="featured-sticker project-stamp-card"
+            data-project-id="${project.id}"
+            aria-label="Open project ${project.title}"
+            style="--sticker-rotate: ${rotations[index % rotations.length]}; --stamp-color: ${stampColors[index % stampColors.length]};"
+          >
+            <svg
+              class="featured-stamp-svg"
+              viewBox="0 0 100 125"
+              role="img"
+              aria-label="${project.title}"
+            >
+              <defs>
+                <clipPath id="${clipId}">
+                  <rect
+                    x="13"
+                    y="13"
+                    width="74"
+                    height="77"
+                    rx="2"
+                  ></rect>
+                </clipPath>
+              </defs>
+
+              <path
+                d="${stampPath}"
+                class="featured-stamp-outer"
+              ></path>
+
+              <rect
+                x="8.5"
+                y="8.5"
+                width="83"
+                height="108"
+                rx="3"
+                class="featured-stamp-inner"
+              ></rect>
+
+              <rect
+                x="11.5"
+                y="11.5"
+                width="77"
+                height="80"
+                rx="2.5"
+                class="featured-stamp-photo-frame"
+              ></rect>
+
+              <image
+                href="${project.mainImage}"
+                x="13"
+                y="13"
+                width="74"
+                height="77"
+                preserveAspectRatio="xMidYMid slice"
+                clip-path="url(#${clipId})"
+              ></image>
+
+              <path
+                d="M 14 96 H 86"
+                class="featured-stamp-mark"
+              ></path>
+
+              <text
+                x="50"
+                y="109"
+                class="featured-stamp-title"
+              >
+                ${titleMarkup}
+              </text>
+            </svg>
+          </button>
+        `;
+
+      })
+      .join('');
+
+
+  grid
+    .querySelectorAll(
+      '.project-stamp-card'
+    )
+    .forEach(card => {
+
+      card.addEventListener(
+        'click',
+        () => {
+
+          const id =
+            card.getAttribute(
+              'data-project-id'
+            );
+
+
+          if (id) {
+
+            openProjectDetail(id);
+
+          }
+
+        }
+      );
+
+    });
+}
+
+
+function renderWavyDetailBadge(
+  element,
+  label,
+  fillColor,
+  width
+) {
+
+  if (!element) return;
+
+
+  const height = 42;
+
+  const path =
+    createPostageStampPath(
+      width,
+      height,
+      2.8,
+      0.8,
+      4,
+      2
+    );
+
+
+  element.style.setProperty(
+    '--badge-fill',
+    fillColor
+  );
+
+
+  element.innerHTML = `
+    <svg
+      class="detail-badge-svg"
+      viewBox="0 0 ${width} ${height}"
+      aria-hidden="true"
+    >
+      <path
+        d="${path}"
+        class="detail-badge-shape"
+      ></path>
+
+      <text
+        x="${width / 2}"
+        y="${height / 2 + 0.5}"
+        class="detail-badge-text"
+      >${label}</text>
+    </svg>
+  `;
+}
+
+
+/* ==========================================================
+   PROJECTDETAIL OPENEN
+   ========================================================== */
+
+
+const DETAIL_FRAME_COLORS = [
+  'var(--color-green)',
+  'var(--color-pink)',
+  'var(--color-mint)',
+  'var(--color-pink)',
+  'var(--color-green)'
+];
+
+let detailMediaRenderToken = 0;
+
+function getDetailFrameColor(index) {
+  return (
+    DETAIL_FRAME_COLORS[
+      index % DETAIL_FRAME_COLORS.length
+    ]
+  );
+}
+
+function loadImageOrientation(src) {
+
+  return new Promise(resolve => {
+
+    const img = new Image();
+
+    img.onload = () => {
+
+      const ratio =
+        img.naturalWidth / img.naturalHeight;
+
+      if (ratio > 1.12) {
+        resolve('landscape');
+      }
+      else if (ratio < 0.88) {
+        resolve('portrait');
+      }
+      else {
+        resolve('square');
+      }
+
+    };
+
+    img.onerror = () => {
+      resolve('portrait');
+    };
+
+    img.src = src;
+
+  });
+}
+
+async function getProjectMediaOrientations(project) {
+
+  return Promise.all(
+    project.images.map(async media => {
+
+      if (media.type !== 'img') {
+        return 'landscape';
+      }
+
+      return loadImageOrientation(
+        media.path
+      );
+
+    })
+  );
+}
+
+function getDetailImageFrameConfig(orientation) {
+
+  if (orientation === 'landscape') {
+
+    return {
+      viewBox: '0 0 120 95',
+      outerPath: createPostageStampPathAt(
+        2.5, 2.5, 115, 90, 0, 0.9, 4, 3
+      ),
+      innerPath: createPostageStampPathAt(
+        4.8, 4.8, 110.4, 85.4, 0, 0.72, 4, 3
+      ),
+      imageX: 4.8,
+      imageY: 4.8,
+      imageW: 110.4,
+      imageH: 85.4,
+      preserve: 'xMidYMid slice'
+    };
+
+  }
+
+  if (orientation === 'square') {
+
+    return {
+      viewBox: '0 0 100 100',
+      outerPath: createPostageStampPathAt(
+        2.5, 2.5, 95, 95, 0, 0.85, 3, 3
+      ),
+      innerPath: createPostageStampPathAt(
+        4.8, 4.8, 90.4, 90.4, 0, 0.68, 3, 3
+      ),
+      imageX: 4.8,
+      imageY: 4.8,
+      imageW: 90.4,
+      imageH: 90.4,
+      preserve: 'xMidYMid slice'
+    };
+
+  }
+
+  return {
+    viewBox: '0 0 100 120',
+    outerPath: createPostageStampPathAt(
+      2.5, 2.5, 95, 115, 0, 0.9, 3, 4
+    ),
+    innerPath: createPostageStampPathAt(
+      4.8, 4.8, 90.4, 110.4, 0, 0.72, 3, 4
+    ),
+    imageX: 4.8,
+    imageY: 4.8,
+    imageW: 90.4,
+    imageH: 110.4,
+    preserve: 'xMidYMid slice'
+  };
+}
+
+function getThumbFrameConfig() {
+
+  return {
+    viewBox: '0 0 100 100',
+    outerPath: createPostageStampPathAt(
+      2.5, 2.5, 95, 95, 0, 0.85, 3, 3
+    ),
+    innerPath: createPostageStampPathAt(
+      4.8, 4.8, 90.4, 90.4, 0, 0.68, 3, 3
+    ),
+    imageX: 4.8,
+    imageY: 4.8,
+    imageW: 90.4,
+    imageH: 90.4
+  };
+}
+
+async function renderProjectMediaAndThumbs(project) {
+
+  const collage =
+    document.getElementById(
+      'detail-collage-stage'
+    );
+
+  const thumbs =
+    document.getElementById(
+      'detail-gallery-thumbs'
+    );
+
+  if (!collage || !thumbs) return;
+
+  const renderToken =
+    ++detailMediaRenderToken;
+
+  const orientations =
+    await getProjectMediaOrientations(project);
+
+  if (renderToken !== detailMediaRenderToken) {
+    return;
+  }
+
+  collage.innerHTML =
+    project.images
+      .map((media, index) => {
+
+        const rotation =
+          `collage-item-${(index % 3) + 1}`;
+
+        if (media.type === 'video') {
+
+          return `
+            <div
+              class="collage-item video-item ${rotation}"
+              data-media-type="video"
+              data-media-index="${index}"
+            >
+              <video
+                class="project-detail-video"
+                controls
+                playsinline
+                preload="metadata"
+                ${media.poster ? `poster="${media.poster}"` : ''}
+              >
+                <source
+                  src="${media.path}"
+                  type="video/mp4"
+                >
+                Je browser ondersteunt deze video niet.
+              </video>
+            </div>
+          `;
+
+        }
+
+        const config =
+          getDetailImageFrameConfig(
+            orientations[index]
+          );
+
+        const clipId =
+          `detail-media-clip-${project.id}-${index}`;
+
+        const frameColor =
+          getDetailFrameColor(index);
+
+        return `
+          <div
+            class="collage-item ${rotation} media-${orientations[index]}"
+            data-media-type="img"
+            data-media-index="${index}"
+          >
+            <svg
+              class="detail-media-svg"
+              viewBox="${config.viewBox}"
+              role="img"
+              aria-label="${media.caption || project.title}"
+              style="--detail-frame-color: ${frameColor};"
+            >
+              <defs>
+                <clipPath id="${clipId}">
+                  <path d="${config.innerPath}"></path>
+                </clipPath>
+              </defs>
+
+              <path
+                d="${config.outerPath}"
+                class="detail-media-frame-outer"
+              ></path>
+
+              <path
+                d="${config.innerPath}"
+                class="detail-media-frame-inner"
+              ></path>
+
+              <image
+                href="${media.path}"
+                x="${config.imageX}"
+                y="${config.imageY}"
+                width="${config.imageW}"
+                height="${config.imageH}"
+                preserveAspectRatio="${config.preserve}"
+                clip-path="url(#${clipId})"
+              ></image>
+            </svg>
+          </div>
+        `;
+
+      })
+      .join('');
+
+  collage
+    .querySelectorAll(
+      '[data-media-type="img"]'
+    )
+    .forEach(item => {
+
+      item.addEventListener(
+        'click',
+        () => {
+          const index = Number(
+            item.getAttribute(
+              'data-media-index'
+            )
+          );
+          const media = project.images[index];
+          if (media) {
+            openLightbox(media);
+          }
+        }
+      );
+
+    });
+
+  thumbs.innerHTML =
+    project.images
+      .map((media, index) => {
+
+        const thumbConfig =
+          getThumbFrameConfig();
+
+        const thumbClipId =
+          `gallery-thumb-${project.id}-${index}`;
+
+        const frameColor =
+          getDetailFrameColor(index);
+
+        if (media.type === 'video') {
+
+          return `
+            <div
+              class="gallery-thumb gallery-thumb-video ${index === 0 ? 'thumb-active' : ''}"
+              data-thumb-index="${index}"
+            >
+              <svg
+                class="gallery-thumb-svg"
+                viewBox="${thumbConfig.viewBox}"
+                role="img"
+                aria-label="${project.title} video"
+                style="--thumb-frame-color: ${frameColor};"
+              >
+                <defs>
+                  <clipPath id="${thumbClipId}">
+                    <path d="${thumbConfig.innerPath}"></path>
+                  </clipPath>
+                </defs>
+
+                <path
+                  d="${thumbConfig.outerPath}"
+                  class="gallery-thumb-outer"
+                ></path>
+
+                <path
+                  d="${thumbConfig.innerPath}"
+                  class="gallery-thumb-inner"
+                ></path>
+
+                ${media.poster ? `
+                  <image
+                    href="${media.poster}"
+                    x="${thumbConfig.imageX}"
+                    y="${thumbConfig.imageY}"
+                    width="${thumbConfig.imageW}"
+                    height="${thumbConfig.imageH}"
+                    preserveAspectRatio="xMidYMid slice"
+                    clip-path="url(#${thumbClipId})"
+                  ></image>
+                ` : ''}
+              </svg>
+              <span class="gallery-video-play">▶</span>
+            </div>
+          `;
+        }
+
+        return `
+          <div
+            class="gallery-thumb ${index === 0 ? 'thumb-active' : ''}"
+            data-thumb-index="${index}"
+          >
+            <svg
+              class="gallery-thumb-svg"
+              viewBox="${thumbConfig.viewBox}"
+              role="img"
+              aria-label="${media.caption || project.title}"
+              style="--thumb-frame-color: ${frameColor};"
+            >
+              <defs>
+                <clipPath id="${thumbClipId}">
+                  <path d="${thumbConfig.innerPath}"></path>
+                </clipPath>
+              </defs>
+
+              <path
+                d="${thumbConfig.outerPath}"
+                class="gallery-thumb-outer"
+              ></path>
+
+              <path
+                d="${thumbConfig.innerPath}"
+                class="gallery-thumb-inner"
+              ></path>
+
+              <image
+                href="${media.path}"
+                x="${thumbConfig.imageX}"
+                y="${thumbConfig.imageY}"
+                width="${thumbConfig.imageW}"
+                height="${thumbConfig.imageH}"
+                preserveAspectRatio="xMidYMid slice"
+                clip-path="url(#${thumbClipId})"
+              ></image>
+            </svg>
+          </div>
+        `;
+
+      })
+      .join('');
+
+  thumbs
+    .querySelectorAll(
+      '.gallery-thumb'
+    )
+    .forEach(thumb => {
+
+      thumb.addEventListener(
+        'click',
+        () => {
+
+          const index = Number(
+            thumb.getAttribute(
+              'data-thumb-index'
+            )
+          );
+
+          const media =
+            project.images[index];
+
+          if (!media) return;
+
+          if (media.type === 'video') {
+
+            const video =
+              collage.querySelector(
+                '.project-detail-video'
+              );
+
+            if (video) {
+              video.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+              });
+              video.play().catch(() => {});
+            }
+          }
+          else {
+            openLightbox(media);
+          }
+        }
+      );
+
+    });
+}
+
+function openProjectDetail(
+  projectId,
+  addToHistory = true
+) {
+
+  const project =
+    PROJECTS_DATA.find(
+      project =>
+        project.id === projectId
+    );
+
+
+  if (!project) return;
+
+
+  /*
+   * Titel
+   */
+
+  const title =
+    document.getElementById(
+      'detail-project-title'
+    );
+
+  if (title) {
+
+    title.textContent =
+      project.title;
+
+  }
+
+
+  /*
+   * Categorie
+   */
+
+  const badge =
+    document.getElementById(
+      'detail-project-badge'
+    );
+
+  if (badge) {
+
+    renderWavyDetailBadge(
+      badge,
+      project.category,
+      'var(--color-green)',
+      168
+    );
+
+  }
+
+
+  /*
+   * Jaar
+   */
+
+  const year =
+    document.getElementById(
+      'detail-project-year'
+    );
+
+  if (year) {
+
+    renderWavyDetailBadge(
+      year,
+      project.year,
+      'var(--color-mint)',
+      92
+    );
+
+  }
+
+
+  /*
+   * Introductie
+   */
+
+  const lead =
+    document.getElementById(
+      'detail-project-lead'
+    );
+
+  if (lead) {
+
+    lead.textContent =
+      project.lead;
+
+  }
+
+
+  /*
+   * Context
+   */
+
+  const context =
+    document.getElementById(
+      'detail-project-context'
+    );
+
+  if (context) {
+
+    context.textContent =
+      project.context;
+
+  }
+
+
+  /*
+   * Tools
+   */
+
+  const tools =
+    document.getElementById(
+      'detail-project-tools'
+    );
+
+  if (tools) {
+
+    tools.textContent =
+      project.tools;
+
+  }
+
+
+  /*
+   * Beschrijving
+   */
+
+  const description =
+    document.getElementById(
+      'detail-project-desc'
+    );
+
+
+  if (description) {
+
+    description.innerHTML =
+      project.description
+        .split('\n\n')
+        .filter(
+          paragraph =>
+            paragraph.trim()
+        )
+        .map(
+          paragraph => `
+            <p style="margin-bottom: 14px;">
+              ${paragraph}
+            </p>
+          `
+        )
+        .join('');
+
+  }
+
+
+  /* ========================================================
+     MEDIA / COLLAGE + THUMBNAILS
+     ======================================================== */
+
+  renderProjectMediaAndThumbs(
+    project
+  );
+
+
+  /* ========================================================
+     PROJECT AAN BROWSER HISTORY TOEVOEGEN
+     ======================================================== */
+
+  if (addToHistory) {
+
+    history.pushState(
+      {
+        viewId:
+          'view-project-detail',
+
+        projectId:
+          project.id
+      },
+
+      '',
+
+      `#project/${
+        encodeURIComponent(
+          project.id
+        )
+      }`
+    );
+
+  }
+
+
+  /*
+   * Projectdetail zichtbaar maken,
+   * zonder nogmaals history toe te voegen.
+   */
+
+  switchView(
+    'view-project-detail',
+    false
+  );
+}
+
+
+/* ==========================================================
+   LIGHTBOX OPENEN
+   ========================================================== */
+
+function openLightbox(media) {
+
+  const modal =
+    document.getElementById(
+      'lightbox-modal'
+    );
+
+  const image =
+    document.getElementById(
+      'lightbox-img'
+    );
+
+
+  if (
+    !modal ||
+    !image
+  ) {
+
+    return;
+
+  }
+
+
+  image.src =
+    media.path;
+
+
+  modal.classList.add(
+    'open'
+  );
+}
+
+
+/* ==========================================================
+   LIGHTBOX SLUITEN
+   ========================================================== */
+
+function closeLightbox() {
+
+  const modal =
+    document.getElementById(
+      'lightbox-modal'
+    );
+
+
+  if (modal) {
+
+    modal.classList.remove(
+      'open'
+    );
+
+  }
+}
+
+
+/* ==========================================================
+   CONTACTFORMULIER
+   ========================================================== */
+
+function setupContactForm() {
+
+  const form =
+    document.getElementById(
+      'portfolio-contact-form'
+    );
+
+  const success =
+    document.getElementById(
+      'form-success-msg'
+    );
+
+
+  if (!form) return;
+
+
+  form.addEventListener(
+    'submit',
+    event => {
+
+      event.preventDefault();
+
+
+      form.reset();
+
+
+      if (success) {
+
+        success.style.display =
+          'block';
+
+
+        setTimeout(
+          () => {
+
+            success.style.display =
+              'none';
+
+          },
+
+          5000
+        );
+
+      }
+
+    }
+  );
+}
+
+
+/* ==========================================================
+   WEBSITE STARTEN
+   ========================================================== */
+
+document.addEventListener(
+  'DOMContentLoaded',
+  () => {
+
+
+    /*
+     * Basisfunctionaliteit instellen
+     */
+
+    setupNavigation();
+
+    setupBackButtons();
+
+    setupBrowserHistory();
+
+    setupContactForm();
+
+    renderProjectsGrid();
+
+    renderFeaturedStickers();
+
+    renderSkillBadges();
+
+
+    /* ======================================================
+       EERSTE HISTORY STATE INSTELLEN
+       ====================================================== */
+
+    const initialHash =
+      window.location.hash ||
+      '#home';
+
+
+    /*
+     * Website wordt direct geopend
+     * op een project.
+     *
+     * Bijvoorbeeld:
+     * index.html#project/resurface
+     */
+
+    if (
+      initialHash.startsWith(
+        '#project/'
+      )
+    ) {
+
+      const projectId =
+        decodeURIComponent(
+          initialHash.replace(
+            '#project/',
+            ''
+          )
+        );
+
+
+      const projectExists =
+        PROJECTS_DATA.some(
+          project =>
+            project.id ===
+            projectId
+        );
+
+
+      if (projectExists) {
+
+        history.replaceState(
+          {
+            viewId:
+              'view-project-detail',
+
+            projectId:
+              projectId
+          },
+
+          '',
+
+          initialHash
+        );
+
+      }
+
+      else {
+
+        history.replaceState(
+          {
+            viewId:
+              'view-home'
+          },
+
+          '',
+
+          '#home'
+        );
+
+      }
+
+    }
+
+
+    /*
+     * Normale pagina
+     */
+
+    else {
+
+      const initialRoutes = {
+
+        '#home':
+          'view-home',
+
+        '#projects':
+          'view-projects',
+
+        '#about':
+          'view-about',
+
+        '#contact':
+          'view-contact'
+
+      };
+
+
+      const initialViewId =
+        initialRoutes[
+          initialHash
+        ] ||
+        'view-home';
+
+
+      history.replaceState(
+        {
+          viewId:
+            initialViewId
+        },
+
+        '',
+
+        initialRoutes[
+          initialHash
+        ]
+          ? initialHash
+          : '#home'
+      );
+
+    }
+
+
+    /*
+     * Juiste pagina tonen
+     * op basis van URL.
+     */
+
+    loadRouteFromUrl();
+
+
+    /* ======================================================
+       LIGHTBOX ACHTERGROND KLIK
+       ====================================================== */
+
+    const modal =
+      document.getElementById(
+        'lightbox-modal'
+      );
+
+
+    if (modal) {
+
+      modal.addEventListener(
+        'click',
+        event => {
+
+          if (
+            event.target === modal
+          ) {
+
+            closeLightbox();
+
+          }
+
+        }
+      );
+
+    }
+
+
+    /* ======================================================
+       ESCAPE SLUIT LIGHTBOX
+       ====================================================== */
+
+    document.addEventListener(
+      'keydown',
+      event => {
+
+        if (
+          event.key === 'Escape'
+        ) {
+
+          closeLightbox();
+
+        }
+
+      }
+    );
+
+  }
+);
+  </script>
+
+</body>
+</html>
